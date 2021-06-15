@@ -1,0 +1,23 @@
+{
+  "name": "atm_locator_server",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "author": "Paradox11",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "tsc -w",
+    "watch-server": "nodemon --watch lib --delay 2 lib/index.js"
+  },
+  "dependencies": {
+    "@tinyhttp/app": "^1.3.8",
+    "pg": "^8.6.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.34",
+    "typescript": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "nodemon": "^2.0.7"
+  }
+}
