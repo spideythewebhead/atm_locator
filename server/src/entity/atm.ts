@@ -1,15 +1,9 @@
 import { BaseEntity, Column, Entity, Index, PrimaryColumn } from "typeorm";
 
-enum StatusCondition {
-  yes,
-  no,
-  unknown,
-}
-
-enum Bank {
-  piraeus,
-  national,
-  alpha,
+export const enum Bank {
+  piraeus = "piraeus",
+  national = "national",
+  alpha = "alpha",
 }
 
 @Entity()
@@ -21,19 +15,23 @@ export class ATM extends BaseEntity {
   })
   id!: string;
 
-  @Column({
-    type: "enum",
-    enum: Bank,
-  })
-  bank!: Bank;
+  @Column()
+  bank!: string;
 
   @Column()
   name!: string;
 
-  @Column()
+  @Column({
+    type: "float",
+  })
   latitude!: number;
 
   @Column()
+  fullAddress!: string;
+
+  @Column({
+    type: "float",
+  })
   longitude!: number;
 
   @Column()
@@ -48,20 +46,16 @@ export class ATM extends BaseEntity {
   @Column()
   prefecture!: string;
 
-  @Column({
-    type: "enum",
-    enum: StatusCondition,
-    default: StatusCondition.unknown,
-  })
+  @Column()
   isOffsite!: boolean;
 
-  @Column({
-    type: "enum",
-    enum: StatusCondition,
-    default: StatusCondition.unknown,
-  })
+  @Column()
   hasWifi!: boolean;
 
   @Column()
   workingHours?: string;
+
+  getFullId() {
+    return `${this.bank}_${this.id}`;
+  }
 }
