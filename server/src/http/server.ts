@@ -9,14 +9,16 @@ export const server = new App({
   },
 });
 
-server.use(json());
+server
+  // allow json parsing
+  .use(json())
 
-// limit to 100 requests per 2 minutes
-server.use(
-  rateLimit({
-    max: 100,
-    windowMs: 60 * 2000,
-  })
-);
+  // limit to 100 requests per 2 minutes
+  .use(
+    rateLimit({
+      max: 100,
+      windowMs: 60 * 2000,
+    })
+  );
 
 registerATM_V0(server);

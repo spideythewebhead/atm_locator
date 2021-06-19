@@ -10,7 +10,8 @@
     "server:watch": "nodemon --watch lib lib/index.js",
     "dev": "run-p *:watch",
     "orm": "typeorm",
-    "prod": "tsc && node ."
+    "prod": "tsc && node .",
+    "populate": "node lib/scripts/update-atms.js"
   },
   "dependencies": {
     "@tinyhttp/app": "^1.3.8",

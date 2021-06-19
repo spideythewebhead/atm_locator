@@ -19,7 +19,7 @@ export function differencesBetweenATMS(
     let i: number;
 
     for (i = 0; i < dbAtms.length; ++i) {
-      if (atm.getFullId() === dbAtms[i].getFullId()) {
+      if (atm.fullId === dbAtms[i].fullId) {
         break;
       }
     }
@@ -34,7 +34,7 @@ export function differencesBetweenATMS(
     let i: number;
 
     for (i = 0; i < fetchedAtms.length; ++i) {
-      if (atm.getFullId() === fetchedAtms[i].getFullId()) {
+      if (atm.fullId === fetchedAtms[i].fullId) {
         break;
       }
     }

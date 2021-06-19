@@ -1,4 +1,5 @@
 import { BaseEntity, Column, Entity, Index, PrimaryColumn } from "typeorm";
+import { LatLng } from "../compute-distance-between";
 
 export const enum Bank {
   piraeus = "piraeus",
@@ -55,7 +56,14 @@ export class ATM extends BaseEntity {
   @Column()
   workingHours?: string;
 
-  getFullId() {
+  get fullId() {
     return `${this.bank}_${this.id}`;
+  }
+
+  get position(): LatLng {
+    return {
+      lat: this.latitude,
+      lng: this.longitude,
+    };
   }
 }
