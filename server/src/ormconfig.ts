@@ -7,7 +7,7 @@ const dev = {
   username: process.env.PG_USER,
   password: process.env.PG_PASSWORD,
   database: process.env.PG_DB,
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities: ["lib/entity/*.js"],
   migrations: ["lib/migration/*.js"],
@@ -28,6 +28,6 @@ const prod = {
   subscribers: ["lib/subscriber/*.js"],
 } as ConnectionOptions;
 
-export function getORMConfig() {
-  return process.env.NODE_ENV === "development" ? dev : prod;
-}
+export default {
+  ...(process.env.NODE_ENV === "development" ? dev : prod),
+};

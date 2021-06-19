@@ -1,10 +1,10 @@
 import { ATM } from "../entity/atm";
 import { Piraeus } from "./piraeus";
 import { createConnection } from "typeorm";
-import ormconfig from "../ormconfig";
+import ormConfig from "../ormconfig";
 
 async function main() {
-  await createConnection(ormconfig);
+  await createConnection(ormConfig);
 
   const piraeusResult = await Piraeus.execute();
 
