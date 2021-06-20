@@ -13,11 +13,14 @@ dependencies:
     sdk: flutter
   provider: 5.0.0
   google_maps_flutter: 2.0.6
-  http: 0.13.3
+  retrofit: 2.0.0
+  json_serializable: 4.1.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  retrofit_generator: 2.0.0+1
+  build_runner: ^2.0.4
 
 flutter:
   uses-material-design: true
