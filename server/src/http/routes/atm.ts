@@ -62,6 +62,8 @@ async function getAtmsByAddress(req: Request, res: Response) {
       .addSelect("atm.workingHours")
       .addSelect("atm.hasWifi")
       .addSelect("atm.isOffsite")
+      .addSelect("atm.bank")
+      .addSelect("atm.name")
       .where(`atm.bank = :bank`, { bank: body.bank })
       .where(
         `to_tsvector('greek', "atm"."fullAddress") @@ to_tsquery('greek', :query)`,
@@ -115,6 +117,8 @@ async function getAtmsByLocation(req: Request, res: Response) {
       .addSelect("atm.workingHours")
       .addSelect("atm.hasWifi")
       .addSelect("atm.isOffsite")
+      .addSelect("atm.bank")
+      .addSelect("atm.name")
       .where(`atm.bank = :bank`, { bank: body.bank })
       .getMany();
 

@@ -9,7 +9,14 @@
       "cwd": "app",
       "request": "launch",
       "type": "dart",
-      "args": ["--dart-define=baseUrl=http://10.10.2.2:55440"]
+      "args": ["--dart-define=baseUrl=http://10.0.2.2:55440/"]
+    },
+    {
+      "name": "app (web)",
+      "cwd": "app",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--dart-define=baseUrl=http://localhost:55440/"]
     },
     {
       "name": "app (profile mode)",

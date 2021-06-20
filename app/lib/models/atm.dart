@@ -4,7 +4,6 @@ part 'atm.g.dart';
 
 @JsonSerializable()
 class ATM {
-  final String id;
   final String bank;
   final String name;
   final String fullAddress;
@@ -18,7 +17,6 @@ class ATM {
   final String workingHours;
 
   ATM(
-    this.id,
     this.bank,
     this.name,
     this.fullAddress,

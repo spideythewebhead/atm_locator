@@ -1,3 +1,5 @@
+import 'package:app/blocs/main_bloc.dart';
+import 'package:app/env_config.dart';
 import 'package:app/http.dart';
 import 'package:app/pages/home.dart';
 import 'package:flutter/material.dart';
@@ -5,15 +7,26 @@ import 'package:provider/provider.dart';
 import 'package:dio/dio.dart';
 
 void main() {
+  final dio = Dio();
+  print(EnvConfig.baseUrl);
+  final httpClient = AppClientHttp(
+    dio,
+    baseUrl: EnvConfig.baseUrl,
+  );
+
   runApp(
     MultiProvider(
       providers: [
-        Provider<AppClientHttp>(
-          lazy: true,
-          create: (context) {
-            return AppClientHttp(Dio());
+        Provider<MainBloc>(
+          create: (_) {
+            return MainBloc(httpClient);
           },
-        )
+          lazy: true,
+          dispose: (_, bloc) {
+            bloc.dispose();
+            dio.close();
+          },
+        ),
       ],
       child: const App(),
     ),
@@ -58,7 +71,7 @@ class _AppState extends State<App> {
         ),
       ),
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         primaryColor: const Color(0xff2f5082),
         accentColor: Colors.deepOrange,
         textTheme: TextTheme(
