@@ -11,6 +11,7 @@
     "dev": "run-p *:watch",
     "orm": "typeorm",
     "prod": "tsc && node .",
+    "migration:run": "typeorm migration:run -f lib/ormconfig.js",
     "populate": "node lib/scripts/update-atms.js"
   },
   "dependencies": {
