@@ -1,6 +1,7 @@
 import 'package:app/http.dart';
 import 'package:app/models/atm.dart';
 import 'package:app/responses/atms_response.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:dio/dio.dart';
 
@@ -24,6 +25,34 @@ class MainBloc {
     } on DioError catch (ex) {}
 
     return AtmsResponse(ok: false);
+  }
+
+  Future<bool> searchWithLocation(LatLng location, double radius) async {
+    try {
+      print('$location $radius');
+      final response = await _http.getAtmsByLocation({
+        'bank': 'piraeus',
+        'location': {
+          'lat': location.latitude,
+          'lng': location.longitude,
+        },
+        'radius': radius.toInt(),
+      });
+
+      if (response.ok && response.data != null) {
+        _atmsController.value = response.data!;
+      }
+
+      return response.ok;
+    } on DioError catch (ex) {
+      print(ex);
+    }
+
+    return false;
+  }
+
+  void publishAtms(List<ATM> atms) {
+    _atmsController.value = [...atms];
   }
 
   void dispose() {
